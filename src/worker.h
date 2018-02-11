@@ -1,10 +1,10 @@
-#ifndef worker_h
-#define worker_h
+#ifndef Helper_h
+#define Helper_h
 
 #include <string>
 
-template < typename T>
-class JWorker 
+template < typename T >
+class JHelper 
 {
 	public:
 		virtual int get_fitness(const T&) = 0;
@@ -15,10 +15,10 @@ class JWorker
 };
 
 
-class JStringWorker: public JWorker<std::string>
+class JStringHelper: public JHelper<std::string>
 {
 	public:
-		JStringWorker(const char* src, const char* dst):m_src_name(src),m_dst_name(dst),m_current_name(src) {}
+		JStringHelper(const char* src, const char* dst):m_src_name(src),m_dst_name(dst),m_current_name(src) {}
 			
 	public:
 		int get_fitness(const std::string& s) {}

@@ -15,14 +15,16 @@ class JGeneticAlgoImpl {
 			JGeneticAlgoImpl(int initial_fitness){}
 
 			virtual void make_new_generation()=0;
-			virtual void calc_fitnesses()=0;
 			virtual void create_first_generation()=0;
+			virtual T make_crossover(const T&, const T&)=0;
+			virtual T make_mutation(T&)=0;
+
+			
 			virtual bool is_done(int)=0;
 			virtual void add_gen(const T&)=0;
 			virtual int get_fitness(const T&)=0;
-
-			virtual T make_crossover(const T&, const T&)=0;
-			virtual T make_mutation(T&)=0;
+			virtual void calc_fitnesses()=0;
+			
 			virtual void post_process()=0;
 			virtual T get_winner() = 0;
 			virtual void set_initial_state(const T)=0;
@@ -33,16 +35,16 @@ class JGeneticAlgoImpl {
 template<typename T>
 class JGeneticAlgoDefaultImpl: public JGeneticAlgoImpl<T> {
 
-public:
+	public:
 		JGeneticAlgoDefaultImpl(int initial_fitness):JGeneticAlgoImpl<T>(initial_fitness),m_max_generations(1000),m_perfect_fitness(0),m_current_fitness(initial_fitness) {
 			m_population_size = 30;
 			//m_population.resize(m_population_size);
 			m_elit_survivors_num = m_population_size/10;
 			//std::cout << m_current_fitness << std::endl;
+			//m_current_fitness = 
 		}
       
-public:
-
+	
 		void add_gen(const T& m) {
 			//assert(0);
 			//fixme assert not to overdo.
